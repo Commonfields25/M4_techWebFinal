@@ -23,11 +23,19 @@ public class DbResourceService : IResourceService
 
     public async Task<IEnumerable<Resource>> GetAllAsync()
     {
+        return await _context.Resources
+            .Include(r => r.Category)
+            .Include(r => r.Topics)
+            .ToListAsync();
         return await _context.Resources.ToListAsync();
     }
 
     public async Task<Resource?> GetByIdAsync(int id)
     {
+        return await _context.Resources
+            .Include(r => r.Category)
+            .Include(r => r.Topics)
+            .FirstOrDefaultAsync(m => m.Id == id);
         return await _context.Resources.FindAsync(id);
     }
 

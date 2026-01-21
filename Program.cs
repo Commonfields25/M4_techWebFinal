@@ -15,10 +15,11 @@ var connectionString = builder.Configuration.GetConnectionString("SqliteConnecti
 builder.Services.AddDbContext<M4Webapp.Data.AppDbContext>(options =>
     options.UseSqlite(connectionString));
 
+// Message repository
 // Message repository - Using DB as requested
 builder.Services.AddScoped<M4Webapp.Repositories.IMessageRepository, M4Webapp.Repositories.DbMessageRepository>();
 
-// Resource service - DB-backed implementation
+// Resource service
 builder.Services.AddScoped<M4Webapp.Services.IResourceService, M4Webapp.Services.DbResourceService>();
 
 // Search service
@@ -39,7 +40,8 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<M4Webapp.Data.AppDbContext>();
-        context.Database.Migrate();
+        // On utilise EnsureCreated au lieu de Migrate car nous n'avons pas encore de migrations générées
+        context.Database.EnsureCreated();
         M4Webapp.Data.SeedData.Initialize(context);
     }
     catch (Exception ex)
