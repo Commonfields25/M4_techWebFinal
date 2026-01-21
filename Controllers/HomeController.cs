@@ -37,6 +37,10 @@ public class HomeController : Controller
     {
         // Si aucun paramètre n'est passé (premier chargement), on active "Gratuit uniquement" par défaut
         if (Request.Query.Count == 0 && string.IsNullOrEmpty(q) && !categoryId.HasValue)
+    public async Task<IActionResult> Resources(string? q, bool onlyFree = false, string? category = null)
+    {
+        // Si aucun paramètre n'est passé (premier chargement), on active "Gratuit uniquement" par défaut
+        if (Request.Query.Count == 0)
         {
             onlyFree = true;
         }
@@ -51,6 +55,12 @@ public class HomeController : Controller
         // On récupère les catégories via le service ou directement via l'injection si besoin
         // Ici on utilise les données déjà chargées par simplicité, ou on pourrait ajouter une méthode GetCategoriesAsync au service
         ViewBag.Categories = allResources.Select(r => r.Category).DistinctBy(c => c.Id).OrderBy(c => c.Name).ToList();
+        var filteredResources = _searchService.Search(allResources, q, onlyFree, category);
+
+        ViewBag.CurrentQuery = q;
+        ViewBag.OnlyFree = onlyFree;
+        ViewBag.CurrentCategory = category;
+        ViewBag.Categories = allResources.Select(r => r.Category).Distinct().OrderBy(c => c).ToList();
 
         return View(filteredResources);
     }

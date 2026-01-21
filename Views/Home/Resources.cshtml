@@ -22,6 +22,11 @@
                         @foreach (var cat in (List<M4Webapp.Models.Category>)ViewBag.Categories)
                         {
                             <!option value="@cat.Id" @(cat.Id == ViewBag.CurrentCategoryId ? "selected" : "")>@cat.Name</!option>
+                    <select name="category" class="form-select">
+                        <option value="">Toutes les catégories</option>
+                        @foreach (var cat in ViewBag.Categories)
+                        {
+                            <!option value="@cat" @(cat == ViewBag.CurrentCategory ? "selected" : "")>@cat</!option>
                         }
                     </select>
                 </div>
@@ -59,12 +64,14 @@
                             </button>
                         </div>
                         <h6 class="card-subtitle mb-2 text-muted">@resource.Category.Name</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">@resource.Category</h6>
                         <p class="card-text">@resource.Description</p>
 
                         <div class="mb-2">
                             @foreach (var topic in resource.Topics)
                             {
                                 <span class="badge bg-info text-dark">@topic.Name</span>
+                                <span class="badge bg-info text-dark">@topic</span>
                             }
                         </div>
 

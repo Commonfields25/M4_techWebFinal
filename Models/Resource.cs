@@ -18,6 +18,7 @@ public class Resource
     public int CategoryId { get; set; }
     public virtual Category Category { get; set; } = null!;
 
+    public string Category { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
     public string Source { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
@@ -27,6 +28,7 @@ public class Resource
     // Relation Many-to-Many vers Topic (3FN)
     public virtual ICollection<Topic> Topics { get; set; } = new List<Topic>();
 
+    public List<string> Topics { get; set; } = new();
     public string? Notes { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
