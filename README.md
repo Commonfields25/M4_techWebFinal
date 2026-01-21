@@ -1,26 +1,4 @@
-# ?? M4Webapp - Plateforme d'Apprentissage 
 
-## ?? Description
-
-**M4Webapp** est une application web ASP.NET Core moderne dédiée à l'**apprentissage des technologies Microsoft** : C#, ASP.NET Core, Azure, SQL Server et bien d'autres.
-
-L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn avec recherche, filtrage et gestion de favoris.
-
-## ? Fonctionnalités Principales
-
-### ?? Ressources d'Apprentissage
-- **29 ressources** provenant de **Microsoft Learn**
-- Organisées en **8 catégories** Microsoft
-- Filtrage par :
-  - ?? Catégorie
-  - ?? Niveau (Débutant, Intermédiaire, Avancé)
-  - ?? Type (Gratuit/Premium)
-  - ?? Tri (Titre, Niveau, Catégorie)
-- Recherche en temps réel
-- Système de favoris avec localStorage
-
-### ?? Gestion des Messages
-- Formulaire de contact avec validation
 - Enregistrement en JSON
 - Envoi email (SMTP ou simulation)
 - Admin panel pour gérer les messages
@@ -234,4 +212,5 @@ Pour toute question ou problème :
 **Dernière mise à jour** : 2026-01-01  
 **Version** : 1.0.0  
 **Maintenu par** : Équipe M4Webapp
+
 
