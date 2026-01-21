@@ -1,0 +1,91 @@
+[
+  {
+    "title": "C# Documentation",
+    "description": "Documentation officielle de Microsoft pour le langage C#.",
+    "category": "C# & .NET",
+    "url": "https://learn.microsoft.com/dotnet/csharp",
+    "source": "MicrosoftLearn",
+    "imageUrl": "/assets/images/microsoft.svg",
+    "isFree": true,
+    "difficulty": "All",
+    "topics": ["C#", ".NET", "Programming"]
+  },
+  {
+    "title": "C# Fundamentals",
+    "description": "Parcours d'apprentissage pour débuter avec C#.",
+    "category": "C# & .NET",
+    "url": "https://learn.microsoft.com/training/paths/csharp-first-steps",
+    "source": "MicrosoftLearn",
+    "imageUrl": "/assets/images/microsoft.svg",
+    "isFree": true,
+    "difficulty": "Beginner",
+    "topics": ["C#", "Basics"]
+  },
+  {
+    "title": "ASP.NET Core Docs",
+    "description": "Documentation officielle pour la création d'applications web avec .NET.",
+    "category": "ASP.NET Core",
+    "url": "https://learn.microsoft.com/aspnet/core",
+    "source": "MicrosoftLearn",
+    "imageUrl": "/assets/images/microsoft.svg",
+    "isFree": true,
+    "difficulty": "All",
+    "topics": ["ASP.NET Core", "Web", ".NET"]
+  },
+  {
+    "title": "freeCodeCamp",
+    "description": "Apprenez à coder gratuitement grâce à des projets et des certifications.",
+    "category": "Learning Platforms",
+    "url": "https://www.freecodecamp.org/",
+    "source": "External",
+    "imageUrl": "/assets/images/freecodecamp.svg",
+    "isFree": true,
+    "difficulty": "Beginner",
+    "topics": ["Web", "JavaScript", "HTML/CSS"]
+  },
+  {
+    "title": "LearnCpp",
+    "description": "Un site gratuit pour apprendre le C++ de zéro.",
+    "category": "C++",
+    "url": "https://www.learncpp.com/",
+    "source": "External",
+    "imageUrl": "/assets/images/learncpp.svg",
+    "isFree": true,
+    "difficulty": "All",
+    "topics": ["C++", "Programming"]
+  },
+  {
+    "title": "AZ-900: Azure Fundamentals",
+    "description": "Examen de certification sur les principes fondamentaux du Cloud Azure.",
+    "category": "Certifications",
+    "url": "https://learn.microsoft.com/certifications/azure-fundamentals",
+    "source": "Microsoft",
+    "imageUrl": "/assets/images/microsoft.svg",
+    "isFree": false,
+    "difficulty": "Beginner",
+    "topics": ["Azure", "Cloud"],
+    "notes": "L'examen est payant, mais le contenu d'apprentissage est gratuit."
+  },
+  {
+    "title": "Khan Academy",
+    "description": "Cours gratuits en ligne dans divers domaines, y compris l'informatique.",
+    "category": "Learning Platforms",
+    "url": "https://www.khanacademy.org/",
+    "source": "External",
+    "imageUrl": "/assets/images/khanacademy.svg",
+    "isFree": true,
+    "difficulty": "Beginner",
+    "topics": ["General", "CS Basics"]
+  },
+  {
+    "title": "Entity Framework Core Docs",
+    "description": "Tout sur l'ORM officiel de Microsoft pour .NET.",
+    "category": "Database",
+    "url": "https://learn.microsoft.com/ef/core",
+    "source": "MicrosoftLearn",
+    "imageUrl": "/assets/images/microsoft.svg",
+    "isFree": true,
+    "difficulty": "All",
+    "topics": ["EF Core", "SQL", "ORM"]
+  }
+]
