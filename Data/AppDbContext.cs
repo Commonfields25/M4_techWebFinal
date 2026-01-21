@@ -8,6 +8,8 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Resource> Resources { get; set; } = null!;
+    public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<Topic> Topics { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,12 +49,6 @@ public class AppDbContext : DbContext
             entity.HasMany(p => p.Topics)
                   .WithMany(p => p.Resources)
                   .UsingEntity(j => j.ToTable("ResourceTopics"));
-            // Conversion pour Topics (List<string> -> JSON/String)
-            entity.Property(e => e.Topics)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
-                );
         });
 
         modelBuilder.Entity<Message>(entity =>

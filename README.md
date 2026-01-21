@@ -1,7 +1,29 @@
+# ?? M4Webapp - Plateforme d'Apprentissage Microsoft
 
+## ?? Description
+
+**M4Webapp** est une application web ASP.NET Core moderne dédiée à l'**apprentissage des technologies Microsoft** : C#, ASP.NET Core, Azure, SQL Server et bien d'autres.
+
+L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn avec recherche, filtrage et gestion de favoris.
+
+## ? Fonctionnalités Principales
+
+### ?? Ressources d'Apprentissage
+- **29 ressources** provenant de **Microsoft Learn**
+- Organisées en **8 catégories** Microsoft
+- Filtrage par :
+  - ?? Catégorie
+  - ?? Niveau (Débutant, Intermédiaire, Avancé)
+  - ?? Type (Gratuit/Premium)
+  - ?? Tri (Titre, Niveau, Catégorie)
+- Recherche en temps réel
+- Système de favoris avec localStorage
+
+### ?? Gestion des Messages
+- Formulaire de contact avec validation
 - Enregistrement en JSON
 - Envoi email (SMTP ou simulation)
-- Admin panel pour gÃ©rer les messages
+- Admin panel pour gérer les messages
 - Export CSV des messages
 
 ### ?? Interface Moderne
@@ -12,10 +34,10 @@
 - Support mobile complet
 
 ### ?? Dashboard Analytics
-- **4 mÃ©triques** clÃ©s en temps rÃ©el
+- **4 métriques** clés en temps réel
 - **3 graphiques** Chart.js :
-  - Ã‰volution des messages (7j)
-  - Distribution ressources par catÃ©gorie
+  - Évolution des messages (7j)
+  - Distribution ressources par catégorie
   - Ressources par niveau
 - Actions rapides
 
@@ -24,7 +46,7 @@
 ### Stack Technique
 - **Framework** : ASP.NET Core 10 MVC/Razor Pages
 - **Language** : C# 14
-- **Base de DonnÃ©es** : JSON File-based (extensible Ã  SQL)
+- **Base de Données** : JSON File-based (extensible à SQL)
 - **Frontend** : Bootstrap 5, Chart.js
 - **Logging** : Microsoft.Extensions.Logging
 
@@ -33,19 +55,19 @@
 M4Webapp/
 ??? Controllers/          # Logique applicative
 ??? Views/               # Templates Razor
-??? Models/              # ModÃ¨les mÃ©tier
-??? ViewModels/          # ModÃ¨les de vue
-??? Services/            # Logique mÃ©tier
-??? Repositories/        # AccÃ¨s donnÃ©es
+??? Models/              # Modèles métier
+??? ViewModels/          # Modèles de vue
+??? Services/            # Logique métier
+??? Repositories/        # Accès données
 ??? Notifications/       # Email, SMS
 ??? Exceptions/          # Custom exceptions
 ??? Utilities/           # Constantes, helpers
 ??? wwwroot/            # Assets (CSS, JS, images)
 ```
 
-## ?? DÃ©marrage Rapide
+## ?? Démarrage Rapide
 
-### PrÃ©requis
+### Prérequis
 - .NET 10 SDK
 - Visual Studio 2022 ou VS Code
 - Git
@@ -63,37 +85,37 @@ dotnet restore
 # Compiler
 dotnet build
 
-# ExÃ©cuter
+# Exécuter
 dotnet run
 ```
 
-L'application dÃ©marre sur : **https://localhost:5001**
+L'application démarre sur : **https://localhost:5001**
 
 ## ?? Utilisation
 
 ### Pages Principales
-- **Accueil** : `https://localhost:5001/` - Hero section + aperÃ§u
+- **Accueil** : `https://localhost:5001/` - Hero section + aperçu
 - **Ressources** : `https://localhost:5001/Home/Resources` - Catalogue complet avec filtres
-- **Favoris** : `https://localhost:5001/Home/Favorites` - Ressources sauvegardÃ©es
+- **Favoris** : `https://localhost:5001/Home/Favorites` - Ressources sauvegardées
 - **Contact** : `https://localhost:5001/Home/Contact` - Formulaire de contact
 - **Admin** : `https://localhost:5001/Admin` - Dashboard analytics
 
-### FonctionnalitÃ©s
+### Fonctionnalités
 1. **Rechercher** : Tapez dans la barre de recherche
-2. **Filtrer** : Utilisez les panneaux latÃ©raux
+2. **Filtrer** : Utilisez les panneaux latéraux
 3. **Favoriser** : Cliquez sur ?
-4. **Basculer ThÃ¨me** : Cliquez ??/??
+4. **Basculer Thème** : Cliquez ??/??
 5. **Consulter Analytics** : Allez sur `/Admin`
 
-## ?? SÃ©curitÃ©
+## ?? Sécurité
 
-### ImplÃ©mentÃ©e
+### Implémentée
 - ? CSRF tokens sur formulaires
-- ? Validation cÃ´tÃ© serveur
-- ? Logging de toutes les opÃ©rations
-- ? Gestion des exceptions personnalisÃ©es
+- ? Validation côté serveur
+- ? Logging de toutes les opérations
+- ? Gestion des exceptions personnalisées
 
-### Ã€ Ajouter
+### À Ajouter
 - [ ] Authentification Admin (Identity)
 - [ ] Rate Limiting
 - [ ] HTTPS obligatoire en production
@@ -130,20 +152,20 @@ ASPNETCORE_ENVIRONMENT=Development
 ASPNETCORE_URLS=https://localhost:5001
 ```
 
-## ??? DÃ©veloppement
+## ??? Développement
 
 ### Ajouter une Ressource
 1. Modifiez `Services/ResourceService.cs`
-2. Ajoutez une nouvelle entrÃ©e dans `GetAllResources()`
+2. Ajoutez une nouvelle entrée dans `GetAllResources()`
 3. Compilez et testez
 
 ### Personnaliser les Couleurs
 - Modifiez `Utilities/Constants.cs` (Colors)
-- Mettez Ã  jour les ressources correspondantes
+- Mettez à jour les ressources correspondantes
 
 ### Ajouter un Filtre
 1. Modifiez `ViewModels/ResourceFilterViewModel.cs`
-2. Mettez Ã  jour `Services/SearchService.cs`
+2. Mettez à jour `Services/SearchService.cs`
 3. Ajustez la vue `Views/Home/Resources.cshtml`
 
 ## ?? Ressources Microsoft
@@ -164,18 +186,18 @@ ASPNETCORE_URLS=https://localhost:5001
 Les contributions sont bienvenues ! Pour contribuer :
 
 1. Fork le repository
-2. CrÃ©ez une branche (`git checkout -b feature/AmazingFeature`)
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
 3. Commit vos changes (`git commit -m 'Add AmazingFeature'`)
 4. Push vers la branche (`git push origin feature/AmazingFeature`)
 5. Ouvrez une Pull Request
 
 ## ?? License
 
-Ce projet est licenciÃ© sous la [MIT License](LICENSE).
+Ce projet est licencié sous la [MIT License](LICENSE).
 
 ## ?? Support
 
-Pour toute question ou problÃ¨me :
+Pour toute question ou problème :
 - Ouvrez une [Issue](https://github.com/votre-compte/M4Webapp/issues)
 - Consultez la [Documentation](AUDIT_REPORT.md)
 - Envoyez un message via le formulaire de contact
@@ -185,32 +207,30 @@ Pour toute question ou problÃ¨me :
 - **Microsoft** pour les ressources Microsoft Learn
 - **Bootstrap** pour le framework CSS
 - **Chart.js** pour les graphiques
-- CommunautÃ© .NET
+- Communauté .NET
 
 ## ?? Roadmap
 
 ### v1.1 (Prochainement)
 - [ ] Authentification Admin avec Identity
-- [ ] SystÃ¨me de notation des ressources
+- [ ] Système de notation des ressources
 - [ ] Notifications par email
 - [ ] Export PDF des analytics
 
 ### v1.2
-- [ ] API REST complÃ¨te
+- [ ] API REST complète
 - [ ] Tests unitaires
 - [ ] Internationalisation (i18n)
 - [ ] Mobile App
 
 ### v2.0
-- [ ] Base de donnÃ©es SQL complÃ¨te
-- [ ] SystÃ¨me de certification
+- [ ] Base de données SQL complète
+- [ ] Système de certification
 - [ ] Microservices
 - [ ] Container Docker
 
 ---
 
-**DerniÃ¨re mise Ã  jour** : 2026-01-01  
+**Dernière mise à jour** : 2026-01-01
 **Version** : 1.0.0  
-**Maintenu par** : Ã‰quipe M4Webapp
-
-
+**Maintenu par** : Équipe M4Webapp

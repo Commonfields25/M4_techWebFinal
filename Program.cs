@@ -16,7 +16,6 @@ builder.Services.AddDbContext<M4Webapp.Data.AppDbContext>(options =>
     options.UseSqlite(connectionString));
 
 // Message repository
-// Message repository - Using DB as requested
 builder.Services.AddScoped<M4Webapp.Repositories.IMessageRepository, M4Webapp.Repositories.DbMessageRepository>();
 
 // Resource service
