@@ -1,0 +1,55 @@
+@model M4Webapp.Models.ContactForm
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<div class="container">
+    <h1 class="mb-4">Contactez-nous</h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Contact" method="post" class="shadow p-4 rounded bg-light border">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Nom</label>
+                    <input asp-for="Name" class="form-control" placeholder="Votre nom" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="votre@email.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Subject" class="form-label">Sujet</label>
+                    <input asp-for="Subject" class="form-control" placeholder="Sujet de votre message" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Message" class="form-label">Message</label>
+                    <textarea asp-for="Message" class="form-control" rows="5" placeholder="Votre message..."></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer le message</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 bg-dark text-white rounded">
+                <h4>Informations</h4>
+                <p>Ce formulaire simule l'envoi d'un email et enregistre votre message dans notre base de données locale.</p>
+                <hr>
+                <p><strong>Support :</strong> support@m4webapp.local</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
