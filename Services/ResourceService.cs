@@ -27,7 +27,6 @@ public class DbResourceService : IResourceService
             .Include(r => r.Category)
             .Include(r => r.Topics)
             .ToListAsync();
-        return await _context.Resources.ToListAsync();
     }
 
     public async Task<Resource?> GetByIdAsync(int id)
@@ -36,7 +35,6 @@ public class DbResourceService : IResourceService
             .Include(r => r.Category)
             .Include(r => r.Topics)
             .FirstOrDefaultAsync(m => m.Id == id);
-        return await _context.Resources.FindAsync(id);
     }
 
     public async Task CreateAsync(Resource resource)

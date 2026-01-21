@@ -6,6 +6,9 @@ using M4Webapp.Repositories;
 
 namespace M4Webapp.Controllers;
 
+/// <summary>
+/// Contrôleur principal gérant l'affichage des pages d'accueil, des ressources et du formulaire de contact.
+/// </summary>
 public class HomeController : Controller
 {
     private readonly IResourceService _resourceService;
@@ -14,6 +17,9 @@ public class HomeController : Controller
     private readonly IEmailSender _emailSender;
     private readonly IMessageRepository _messageRepository;
 
+    /// <summary>
+    /// Initialise une nouvelle instance du contrôleur <see cref="HomeController"/>.
+    /// </summary>
     public HomeController(
         IResourceService resourceService,
         ISearchService searchService,
@@ -28,51 +34,63 @@ public class HomeController : Controller
         _messageRepository = messageRepository;
     }
 
+    /// <summary>
+    /// Affiche la page d'accueil de l'application.
+    /// </summary>
     public IActionResult Index()
     {
         return View();
     }
 
+    /// <summary>
+    /// Affiche la liste des ressources éducatives avec options de recherche et filtrage.
+    /// </summary>
+    /// <param name="q">Chaîne de recherche pour filtrer les titres, descriptions ou thèmes.</param>
+    /// <param name="onlyFree">Indique si seules les ressources gratuites doivent être affichées.</param>
+    /// <param name="categoryId">Identifiant de la catégorie pour filtrer les ressources.</param>
+    /// <returns>Une vue contenant la liste filtrée des ressources.</returns>
     public async Task<IActionResult> Resources(string? q, bool onlyFree = false, int? categoryId = null)
     {
-        // Si aucun paramètre n'est passé (premier chargement), on active "Gratuit uniquement" par défaut
+        // Active le filtre "Gratuit uniquement" par défaut lors de la première visite
         if (Request.Query.Count == 0 && string.IsNullOrEmpty(q) && !categoryId.HasValue)
-    public async Task<IActionResult> Resources(string? q, bool onlyFree = false, string? category = null)
-    {
-        // Si aucun paramètre n'est passé (premier chargement), on active "Gratuit uniquement" par défaut
-        if (Request.Query.Count == 0)
         {
             onlyFree = true;
         }
 
+        // Récupération de toutes les ressources (avec chargement des entités liées)
         var allResources = await _resourceService.GetAllAsync();
+
+        // Application de la logique de recherche et de filtrage
         var filteredResources = _searchService.Search(allResources, q, onlyFree, categoryId);
 
+        // Préparation des données pour la vue
         ViewBag.CurrentQuery = q;
         ViewBag.OnlyFree = onlyFree;
         ViewBag.CurrentCategoryId = categoryId;
 
-        // On récupère les catégories via le service ou directement via l'injection si besoin
-        // Ici on utilise les données déjà chargées par simplicité, ou on pourrait ajouter une méthode GetCategoriesAsync au service
+        // Extraction des catégories uniques pour le menu déroulant du filtre
         ViewBag.Categories = allResources.Select(r => r.Category).DistinctBy(c => c.Id).OrderBy(c => c.Name).ToList();
-        var filteredResources = _searchService.Search(allResources, q, onlyFree, category);
-
-        ViewBag.CurrentQuery = q;
-        ViewBag.OnlyFree = onlyFree;
-        ViewBag.CurrentCategory = category;
-        ViewBag.Categories = allResources.Select(r => r.Category).Distinct().OrderBy(c => c).ToList();
 
         return View(filteredResources);
     }
 
+    /// <summary>
+    /// Affiche la page de contact.
+    /// </summary>
     public IActionResult Contact()
     {
         return View(new ContactForm());
     }
 
+    /// <summary>
+    /// Traite la soumission du formulaire de contact.
+    /// </summary>
+    /// <param name="form">Les données du formulaire soumises par l'utilisateur.</param>
+    /// <returns>Redirige vers la page de contact en cas de succès, sinon réaffiche le formulaire avec les erreurs.</returns>
     [HttpPost]
     public async Task<IActionResult> Contact(ContactForm form)
     {
+        // Validation manuelle via le service de validation
         if (_validationService.TryValidate(form, out var results))
         {
             var message = new Message
@@ -84,13 +102,17 @@ public class HomeController : Controller
                 SentAt = DateTime.UtcNow
             };
 
+            // Sauvegarde du message dans la base de données
             await _messageRepository.AddAsync(message);
+
+            // Simulation de l'envoi d'un email de confirmation
             await _emailSender.SendEmailAsync(form.Email, "Confirmation de contact", "Nous avons bien reçu votre message.");
 
             TempData["Success"] = "Votre message a été envoyé avec succès !";
             return RedirectToAction("Contact");
         }
 
+        // Ajout des erreurs de validation à l'état du modèle pour affichage dans la vue
         foreach (var error in results)
         {
             ModelState.AddModelError(error.MemberNames.FirstOrDefault() ?? string.Empty, error.ErrorMessage ?? "Erreur");
