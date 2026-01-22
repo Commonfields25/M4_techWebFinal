@@ -1,13 +1,13 @@
-# ?? GUIDE DE DÉVELOPPEMENT LOCAL
+#  GUIDE DE DÃ‰VELOPPEMENT LOCAL
 
-## ? Prérequis
+##  PrÃ©requis
 
 - **IDE** : Visual Studio 2022 ou VS Code
 - **.NET** : SDK 10.0 ou plus
 - **Git** : Pour le version control
 - **Node.js** (Optionnel) : Pour npm packages
 
-## ?? Setup Initial
+##  Setup Initial
 
 ### 1. Cloner le Repository
 ```bash
@@ -25,20 +25,20 @@ dotnet restore
 dotnet build
 ```
 
-### 4. Exécuter l'Application
+### 4. ExÃ©cuter l'Application
 ```bash
 dotnet run
 ```
 
-Application démarre sur : **https://localhost:5001**
+Application dÃ©marre sur : **https://localhost:5001**
 
 ---
 
-## ?? Structure des Répertoires
+## ?? Structure des RÃ©pertoires
 
 ```
 M4Webapp/
-??? Controllers/                  # Contrôleurs MVC
+??? Controllers/                  # ContrÃ´leurs MVC
 ?   ??? HomeController.cs
 ?   ??? AdminController.cs
 ??? Views/                        # Templates Razor
@@ -53,26 +53,26 @@ M4Webapp/
 ?   ??? Shared/
 ?       ??? _Layout.cshtml       # Layout principal
 ?       ??? _ValidationScriptsPartial.cshtml
-??? Models/                       # Modèles métier
+??? Models/                       # ModÃ¨les mÃ©tier
 ?   ??? ContactMessage.cs
 ?   ??? Resource.cs
 ?   ??? ErrorViewModel.cs
-??? ViewModels/                   # Modèles de vue
+??? ViewModels/                   # ModÃ¨les de vue
 ?   ??? ContactFormModel.cs
 ?   ??? ResourceFilterViewModel.cs
 ?   ??? AdminDashboardViewModel.cs
-??? Services/                     # Logique métier
+??? Services/                     # Logique mÃ©tier
 ?   ??? ResourceService.cs
 ?   ??? SearchService.cs
 ?   ??? ValidationService.cs
 ?   ??? ThemeService.cs
-??? Repositories/                 # Accès données
+??? Repositories/                 # AccÃ¨s donnÃ©es
 ?   ??? IMessageRepository.cs
 ?   ??? FileMessageRepository.cs
 ??? Notifications/                # Email, SMS
 ?   ??? IEmailSender.cs
 ?   ??? EmailSender.cs
-??? Exceptions/                   # Exceptions personnalisées
+??? Exceptions/                   # Exceptions personnalisÃ©es
 ?   ??? M4WebappExceptions.cs
 ??? Utilities/                    # Helpers & Constantes
 ?   ??? Constants.cs
@@ -82,18 +82,18 @@ M4Webapp/
 ?   ??? images/
 ?   ??? lib/
 ??? Properties/
-?   ??? launchSettings.json       # Configuration développement
+?   ??? launchSettings.json       # Configuration dÃ©veloppement
 ?   ??? Profiles/
-??? Program.cs                    # Configuration de démarrage
+??? Program.cs                    # Configuration de dÃ©marrage
 ??? appsettings.json             # Configuration
-??? appsettings.Development.json  # Config développement
+??? appsettings.Development.json  # Config dÃ©veloppement
 ??? M4Webapp.csproj              # Fichier projet
 
 ```
 
 ---
 
-## ?? Configuration Développement
+## ?? Configuration DÃ©veloppement
 
 ### appsettings.Development.json
 ```json
@@ -161,14 +161,14 @@ git push origin feature/new-resource
 
 ---
 
-### Ajouter une Fonctionnalité
+### Ajouter une FonctionnalitÃ©
 
-**1. Créez une branche**
+**1. CrÃ©ez une branche**
 ```bash
 git checkout -b feature/my-feature
 ```
 
-**2. Créez l'interface**
+**2. CrÃ©ez l'interface**
 ```csharp
 // Repositories/IMyService.cs
 public interface IMyService
@@ -177,7 +177,7 @@ public interface IMyService
 }
 ```
 
-**3. Implémentez le service**
+**3. ImplÃ©mentez le service**
 ```csharp
 // Services/MyService.cs
 public class MyService : IMyService
@@ -192,7 +192,7 @@ public class MyService : IMyService
     public async Task<List<T>> GetAllAsync()
     {
         _logger.LogInformation("Getting all items");
-        // Implémentation...
+        // ImplÃ©mentation...
     }
 }
 ```
@@ -205,7 +205,7 @@ builder.Services.AddScoped<IMyService, MyService>();
 **5. Testez**
 ```bash
 dotnet run
-# Testez la fonctionnalité
+# Testez la fonctionnalitÃ©
 ```
 
 **6. Commitez**
@@ -219,7 +219,7 @@ git push origin feature/my-feature
 
 ### Corriger un Bug
 
-**1. Créez une branche bugfix**
+**1. CrÃ©ez une branche bugfix**
 ```bash
 git checkout -b bugfix/issue-123
 ```
@@ -238,7 +238,7 @@ dotnet run
 **4. Testez la correction**
 ```bash
 dotnet run
-# Vérifiez que le bug est corrigé
+# VÃ©rifiez que le bug est corrigÃ©
 ```
 
 **5. Commitez**
@@ -266,7 +266,7 @@ public void ProcessMessage(ContactMessage msg)
     // 100 lignes de code
 }
 
-// Après
+// AprÃ¨s
 public void ProcessMessage(ContactMessage msg)
 {
     ValidateMessage(msg);
@@ -282,7 +282,7 @@ private void SendConfirmationEmail(ContactMessage msg) { }
 **3. Testez**
 ```bash
 dotnet run
-# Vérifiez que le comportement n'a pas changé
+# VÃ©rifiez que le comportement n'a pas changÃ©
 ```
 
 **4. Commitez**
@@ -294,7 +294,7 @@ git push origin refactor/process-message
 
 ---
 
-## ?? Testing (À Implémenter)
+## ?? Testing (Ã€ ImplÃ©menter)
 
 ### Structure
 ```
@@ -308,7 +308,7 @@ M4Webapp.Tests/
     ??? ContactFormTests.cs
 ```
 
-### Exécuter les tests
+### ExÃ©cuter les tests
 ```bash
 dotnet test
 ```
@@ -321,7 +321,7 @@ dotnet test
 ```
 1. Mettez un breakpoint (F9)
 2. Lancez en debug (F5)
-3. Naviguez à la page pour déclencher
+3. Naviguez Ã  la page pour dÃ©clencher
 4. Inspectez les variables
 ```
 
@@ -355,7 +355,7 @@ _logger.LogError(exception, "Error message");
 
 ---
 
-## ?? Monitoring Développement
+## ?? Monitoring DÃ©veloppement
 
 ### Application Insights (Optionnel)
 ```bash
@@ -372,7 +372,7 @@ builder.Services.AddApplicationInsightsTelemetry();
 
 ## ?? CI/CD Local
 
-### GitHub Actions (À Configurer)
+### GitHub Actions (Ã€ Configurer)
 ```yaml
 # .github/workflows/build.yml
 name: Build & Test
@@ -395,7 +395,7 @@ jobs:
 
 ## ?? Troubleshooting
 
-### Port 5001 Déjà Utilisé
+### Port 5001 DÃ©jÃ  UtilisÃ©
 ```bash
 # Trouver le process
 lsof -i :5001
@@ -417,7 +417,7 @@ dotnet restore
 dotnet watch run
 ```
 
-### Base de Données Corrompue
+### Base de DonnÃ©es Corrompue
 ```bash
 # Supprimer les fichiers JSON
 rm contact_messages.json
@@ -428,7 +428,7 @@ dotnet run
 
 ---
 
-## ?? Documentation Supplémentaire
+## ?? Documentation SupplÃ©mentaire
 
 - Voir [README.md](README.md) pour la vue d'ensemble
 - Voir [BEST_PRACTICES.md](BEST_PRACTICES.md) pour les bonnes pratiques
@@ -437,5 +437,6 @@ dotnet run
 
 ---
 
-**Dernière mise à jour** : 2026-01-01  
+**DerniÃ¨re mise Ã  jour** : 2026-01-01  
 **Pour** : M4Webapp v1.0+
+
