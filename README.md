@@ -217,8 +217,9 @@ Ce projet est licencié sous la [MIT License](LICENSE).
 
 ---
 
-**Dernière mise à jour** : 2026-01-01
-**Version** : 1.0.0  
+**Dernière mise à jour** : 2026-01-22
+**Version** : 1.2.0  
 **Maintenu par** : Équipe M4Webapp
+
 
 
