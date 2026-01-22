@@ -1,4 +1,19 @@
-/* Styles globaux */
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ============================= */
+/* Styles globaux                */
+/* A-Hadi Noé
+/* ============================= */
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     transition: background-color 0.3s, color 0.3s;
     min-height: 100vh;
@@ -6,12 +21,13 @@ body {
     flex-direction: column;
 }
 
+/* Contenu principal */
 main {
     flex: 1;
 }
 
+/* Pied de page */
 .footer {
     position: relative;
-    bottom: 0;
     width: 100%;
 }
