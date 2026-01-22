@@ -1,2 +1,2 @@
 // Script global
-console.log("M4Webapp chargé");
+console.log("Webapp chargé");
