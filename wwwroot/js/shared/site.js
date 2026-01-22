@@ -1,2 +1,7 @@
-// Script global
-console.log("Webapp chargé");
+// =============================
+// Script global de l'application
+// =============================
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ Webapp chargée");
+});
