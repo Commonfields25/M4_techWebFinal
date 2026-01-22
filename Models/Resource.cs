@@ -66,6 +66,16 @@ public class Resource
     public string? Notes { get; set; }
 
     /// <summary>
+    /// Note moyenne donnée par les utilisateurs.
+    /// </summary>
+    public double AverageRating { get; set; }
+
+    /// <summary>
+    /// Nombre de notes reçues.
+    /// </summary>
+    public int RatingCount { get; set; }
+
+    /// <summary>
     /// Date de création de l'entrée dans la base de données.
     /// </summary>
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

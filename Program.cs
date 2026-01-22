@@ -15,6 +15,17 @@ var connectionString = builder.Configuration.GetConnectionString("SqliteConnecti
 builder.Services.AddDbContext<M4Webapp.Data.AppDbContext>(options =>
     options.UseSqlite(connectionString));
 
+// Add Identity
+builder.Services.AddDefaultIdentity<Microsoft.AspNetCore.Identity.IdentityUser>(options => {
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+})
+.AddEntityFrameworkStores<M4Webapp.Data.AppDbContext>();
+
 // Message repository
 builder.Services.AddScoped<M4Webapp.Repositories.IMessageRepository, M4Webapp.Repositories.DbMessageRepository>();
 
