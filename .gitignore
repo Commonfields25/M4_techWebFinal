@@ -1,0 +1,10 @@
+[Dd]ebug/
+[Rr]elease/
+[Oo]bj/
+[Bb]in/
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+*.userprefs

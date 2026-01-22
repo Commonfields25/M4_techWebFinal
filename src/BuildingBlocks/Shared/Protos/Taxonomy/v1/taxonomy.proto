@@ -1,0 +1,7 @@
+syntax = "proto3";
+option csharp_namespace = "M4Webapp.Shared.Protos.Taxonomy.v1";
+package taxonomy.v1;
+service TaxonomyService { rpc GetCategories (Empty) returns (CategoriesResponse); }
+message Empty {}
+message CategoryResponse { int32 id = 1; string name = 2; }
+message CategoriesResponse { repeated CategoryResponse categories = 1; }

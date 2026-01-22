@@ -1,0 +1,6 @@
+@Taxonomy.API_HostAddress = http://localhost:5071
+
+GET {{Taxonomy.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
