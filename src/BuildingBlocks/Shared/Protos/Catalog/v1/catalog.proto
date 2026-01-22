@@ -1,0 +1,6 @@
+syntax = "proto3";
+option csharp_namespace = "M4Webapp.Shared.Protos.Catalog.v1";
+package catalog.v1;
+service CatalogService { rpc GetResourceById (GetResourceByIdRequest) returns (ResourceResponse); }
+message GetResourceByIdRequest { int32 id = 1; }
+message ResourceResponse { int32 id = 1; string title = 2; string description = 3; }

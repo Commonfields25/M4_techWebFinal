@@ -1,0 +1,64 @@
+services:
+  # --- Databases ---
+  db-identity: { image: postgres:17-alpine, environment: [POSTGRES_DB=identity_db, POSTGRES_USER=postgres, POSTGRES_PASSWORD=postgres], volumes: [identity-data:/var/lib/postgresql/data], networks: [m4webapp-network] }
+  db-catalog: { image: postgres:17-alpine, environment: [POSTGRES_DB=catalog_db, POSTGRES_USER=postgres, POSTGRES_PASSWORD=postgres], volumes: [catalog-data:/var/lib/postgresql/data], networks: [m4webapp-network] }
+  db-taxonomy: { image: postgres:17-alpine, environment: [POSTGRES_DB=taxonomy_db, POSTGRES_USER=postgres, POSTGRES_PASSWORD=postgres], volumes: [taxonomy-data:/var/lib/postgresql/data], networks: [m4webapp-network] }
+  db-engagement: { image: postgres:17-alpine, environment: [POSTGRES_DB=engagement_db, POSTGRES_USER=postgres, POSTGRES_PASSWORD=postgres], volumes: [engagement-data:/var/lib/postgresql/data], networks: [m4webapp-network] }
+  db-inquiry: { image: postgres:17-alpine, environment: [POSTGRES_DB=inquiry_db, POSTGRES_USER=postgres, POSTGRES_PASSWORD=postgres], volumes: [inquiry-data:/var/lib/postgresql/data], networks: [m4webapp-network] }
+  db-certification: { image: postgres:17-alpine, environment: [POSTGRES_DB=certification_db, POSTGRES_USER=postgres, POSTGRES_PASSWORD=postgres], volumes: [certification-data:/var/lib/postgresql/data], networks: [m4webapp-network] }
+
+  rabbitmq: { image: rabbitmq:4-management-alpine, ports: ["5672:5672", "15672:15672"], networks: [m4webapp-network] }
+
+  # --- Microservices ---
+  identity-api:
+    build: { context: ., dockerfile: src/Services/Identity/Identity.API/Dockerfile }
+    environment: [ConnectionStrings__DefaultConnection=Host=db-identity;Database=identity_db;Username=postgres;Password=postgres, RabbitMQ__Host=rabbitmq, JwtSettings__Key=${JWT_KEY:-super_secret_key_that_is_long_enough}]
+    depends_on: [db-identity, rabbitmq]
+    networks: [m4webapp-network]
+
+  catalog-api:
+    build: { context: ., dockerfile: src/Services/Catalog/Catalog.API/Dockerfile }
+    environment: [ConnectionStrings__DefaultConnection=Host=db-catalog;Database=catalog_db;Username=postgres;Password=postgres, RabbitMQ__Host=rabbitmq]
+    depends_on: [db-catalog, rabbitmq]
+    networks: [m4webapp-network]
+
+  taxonomy-api:
+    build: { context: ., dockerfile: src/Services/Taxonomy/Taxonomy.API/Dockerfile }
+    environment: [ConnectionStrings__DefaultConnection=Host=db-taxonomy;Database=taxonomy_db;Username=postgres;Password=postgres, RabbitMQ__Host=rabbitmq]
+    depends_on: [db-taxonomy, rabbitmq]
+    networks: [m4webapp-network]
+
+  # --- Observability (Grafana LGTM Stack) ---
+  loki: { image: grafana/loki:3.2.1, command: -config.file=/etc/loki/local-config.yaml, networks: [m4webapp-network] }
+  tempo: { image: grafana/tempo:2.6.1, command: [ "-config.file=/etc/tempo.yaml" ], volumes: [ "./infra/tempo.yaml:/etc/tempo.yaml" ], networks: [m4webapp-network] }
+  mimir: { image: grafana/mimir:2.14.0, command: [ "-config.file=/etc/mimir.yaml" ], volumes: [ "./infra/mimir.yaml:/etc/mimir.yaml" ], networks: [m4webapp-network] }
+  grafana:
+    image: grafana/grafana:11.3.1
+    ports: ["3000:3000"]
+    environment: [GF_AUTH_ANONYMOUS_ENABLED=true, GF_AUTH_ANONYMOUS_ORG_ROLE=Admin]
+    depends_on: [loki, tempo, mimir]
+    networks: [m4webapp-network]
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.114.0
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes: ["./infra/otel-collector-config.yaml:/etc/otel-collector-config.yaml"]
+    depends_on: [loki, tempo, mimir]
+    networks: [m4webapp-network]
+
+  gateway-api:
+    build: { context: ., dockerfile: src/ApiGateways/Gateway.API/Dockerfile }
+    ports: ["5000:80"]
+    depends_on: [identity-api, catalog-api, taxonomy-api]
+    networks: [m4webapp-network]
+
+networks:
+  m4webapp-network: { driver: bridge }
+
+volumes:
+  identity-data:
+  catalog-data:
+  taxonomy-data:
+  engagement-data:
+  inquiry-data:
+  certification-data:
