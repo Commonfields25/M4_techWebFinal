@@ -1,17 +1,48 @@
-/* Styles spécifiques à la page ressources */
+/* =============================    */
+/* Styles spécifiques – Ressources */
+/*    je me suis amusé ici        */
+/* ============================= */
+
+/* Carte ressource */
 .resource-card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition:
+        transform 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out;
+    height: 100%;
+    cursor: pointer;
 }
 
+/* Effet au survol */
 .resource-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Mode sombre : survol plus doux */
 body.dark .resource-card:hover {
-    box-shadow: 0 4px 15px rgba(255,255,255,0.05);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
 }
+
+/* ============================= */
+/* Badges Bootstrap              */
+/* ============================= */
 
 .badge {
     font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ============================= */
+/* Accessibilité                 */
+/* ============================= */
+
+/* Effet clavier (tabulation) */
+.resource-card:focus-within {
+    outline: 2px solid #0d6efd;
+    outline-offset: 3px;
+}
+
+/* Mode sombre : focus visible */
+body.dark .resource-card:focus-within {
+    outline-color: #9ecbff;
 }
