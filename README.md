@@ -1,6 +1,6 @@
-# ?? M4Webapp - Plateforme d'Apprentissage
+#  M4Webapp - Plateforme d'Apprentissage
 
-## ?? Description
+## Description
 
 **M4Webapp** est une application web ASP.NET Core moderne dédiée à l'**apprentissage des technologies Microsoft** : C#, ASP.NET Core, Azure, SQL Server et bien d'autres.
 
@@ -19,14 +19,14 @@ L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn a
 - Recherche en temps réel
 - Système de favoris avec localStorage
 
-### ?? Gestion des Messages
+###  Gestion des Messages
 - Formulaire de contact avec validation
 - Enregistrement en JSON
 - Envoi email (SMTP ou simulation)
 - Admin panel pour gérer les messages
 - Export CSV des messages
 
-### ?? Interface Moderne
+###  Interface Moderne
 - **Mode Sombre / Clair** (toggle ??)
 - Design responsive Bootstrap 5
 - Gradients modernes
@@ -41,7 +41,7 @@ L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn a
   - Ressources par niveau
 - Actions rapides
 
-## ??? Architecture
+## Architecture
 
 ### Stack Technique
 - **Framework** : ASP.NET Core 10 MVC/Razor Pages
@@ -91,7 +91,7 @@ dotnet run
 
 L'application démarre sur : **https://localhost:5001**
 
-## ?? Utilisation
+## Utilisation
 
 ### Pages Principales
 - **Accueil** : `https://localhost:5001/` - Hero section + aperçu
@@ -107,7 +107,7 @@ L'application démarre sur : **https://localhost:5001**
 4. **Basculer Thème** : Cliquez ??/??
 5. **Consulter Analytics** : Allez sur `/Admin`
 
-## ?? Sécurité
+##  Sécurité
 
 ### Implémentée
 - ? CSRF tokens sur formulaires
@@ -191,25 +191,11 @@ Les contributions sont bienvenues ! Pour contribuer :
 4. Push vers la branche (`git push origin feature/AmazingFeature`)
 5. Ouvrez une Pull Request
 
-## ?? License
+## License
 
 Ce projet est licencié sous la [MIT License](LICENSE).
 
-## ?? Support
-
-Pour toute question ou problème :
-- Ouvrez une [Issue](https://github.com/votre-compte/M4Webapp/issues)
-- Consultez la [Documentation](AUDIT_REPORT.md)
-- Envoyez un message via le formulaire de contact
-
-## ?? Remerciements
-
-- **Microsoft** pour les ressources Microsoft Learn
-- **Bootstrap** pour le framework CSS
-- **Chart.js** pour les graphiques
-- Communauté .NET
-
-## ?? Roadmap
+##  Roadmap
 
 ### v1.1 (Prochainement)
 - [ ] Authentification Admin avec Identity
@@ -234,4 +220,5 @@ Pour toute question ou problème :
 **Dernière mise à jour** : 2026-01-01
 **Version** : 1.0.0  
 **Maintenu par** : Équipe M4Webapp
+
 
