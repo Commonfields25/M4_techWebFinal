@@ -2,7 +2,7 @@
 
 ## Description
 
-**M4Webapp** est une application web ASP.NET Core moderne dédiée à l'**apprentissage des technologies Microsoft** : C#, ASP.NET Core, Azure, SQL Server et bien d'autres.
+**M4Webapp** est une application web ASP.NET Core moderne dédiée à l'**apprentissage des technologies** : C#, ASP.NET Core, Azure, SQL Server et bien d'autres.
 
 L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn avec recherche, filtrage et gestion de favoris.
 
@@ -12,10 +12,10 @@ L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn a
 - **29 ressources** provenant de **Microsoft Learn**
 - Organisées en **8 catégories** Microsoft
 - Filtrage par :
-  - ?? Catégorie
-  - ?? Niveau (Débutant, Intermédiaire, Avancé)
-  - ?? Type (Gratuit/Premium)
-  - ?? Tri (Titre, Niveau, Catégorie)
+  - Catégorie
+  - Niveau (Débutant, Intermédiaire, Avancé)
+  - Type (Gratuit/Premium)
+  - Tri (Titre, Niveau, Catégorie)
 - Recherche en temps réel
 - Système de favoris avec localStorage
 
@@ -27,7 +27,7 @@ L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn a
 - Export CSV des messages
 
 ###  Interface Moderne
-- **Mode Sombre / Clair** (toggle ??)
+- **Mode Sombre / Clair** (toggle)
 - Design responsive Bootstrap 5
 - Gradients modernes
 - Animations au survol
@@ -53,16 +53,16 @@ L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn a
 ### Dossiers Principaux
 ```
 M4Webapp/
-??? Controllers/          # Logique applicative
-??? Views/               # Templates Razor
-??? Models/              # Modèles métier
-??? ViewModels/          # Modèles de vue
-??? Services/            # Logique métier
-??? Repositories/        # Accès données
-??? Notifications/       # Email, SMS
-??? Exceptions/          # Custom exceptions
-??? Utilities/           # Constantes, helpers
-??? wwwroot/            # Assets (CSS, JS, images)
+... Controllers/          # Logique applicative
+... Views/               # Templates Razor
+... Models/              # Modèles métier
+... ViewModels/          # Modèles de vue
+... Services/            # Logique métier
+... Repositories/        # Accès données
+... Notifications/       # Email, SMS
+... Exceptions/          # Custom exceptions
+... Utilities/           # Constantes, helpers
+... wwwroot/            # Assets (CSS, JS, images)
 ```
 
 ## ?? Démarrage Rapide
@@ -121,7 +121,7 @@ L'application démarre sur : **https://localhost:5001**
 - [ ] HTTPS obligatoire en production
 - [ ] Content Security Policy (CSP)
 
-## ?? Configuration
+## Configuration
 
 ### appsettings.json
 ```json
@@ -152,7 +152,7 @@ ASPNETCORE_ENVIRONMENT=Development
 ASPNETCORE_URLS=https://localhost:5001
 ```
 
-## ??? Développement
+## Developpement
 
 ### Ajouter une Ressource
 1. Modifiez `Services/ResourceService.cs`
@@ -218,8 +218,9 @@ Ce projet est licencié sous la [MIT License](LICENSE).
 ---
 
 **Dernière mise à jour** : 2026-01-22
-**Version** : 1.2.0  
+**Version** : 1.0.alpha 
 **Maintenu par** : Équipe M4Webapp
+
 
 
 
