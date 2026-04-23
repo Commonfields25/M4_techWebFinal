@@ -33,7 +33,7 @@
                     </ul>
                     <div class="d-flex align-items-center">
                         <button class="btn btn-outline-secondary btn-sm"
-                                @click="theme = (theme === 'light' ? 'dark' : 'light'); localStorage.setItem('theme', theme)">
+                                @@click="theme = (theme === 'light' ? 'dark' : 'light'); localStorage.setItem('theme', theme)">
                             <span x-show="theme === 'light'">🌙 Sombre</span>
                             <span x-show="theme === 'dark'">☀️ Clair</span>
                         </button>
