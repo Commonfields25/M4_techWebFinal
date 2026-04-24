@@ -6,9 +6,9 @@
 
 L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn avec recherche, filtrage et gestion de favoris.
 
-## ? Fonctionnalités Principales
+## 🚀 Fonctionnalités Principales
 
-### ?? Ressources d'Apprentissage
+### 📚 Ressources d'Apprentissage
 - **29 ressources** provenant de **Microsoft Learn**
 - Organisées en **8 catégories** Microsoft
 - Filtrage par :
@@ -19,171 +19,96 @@ L'application centralise **29+ ressources d'apprentissage** de Microsoft Learn a
 - Recherche en temps réel
 - Système de favoris avec localStorage
 
-###  Gestion des Messages
+### 📧 Gestion des Messages
 - Formulaire de contact avec validation
-- Enregistrement en JSON
+- Enregistrement en base de données (SQLite)
 - Envoi email (SMTP ou simulation)
 - Admin panel pour gérer les messages
-- Export CSV des messages
 
-###  Interface Moderne
+### 🎨 Interface Moderne
 - **Mode Sombre / Clair** (toggle)
 - Design responsive Bootstrap 5
 - Gradients modernes
 - Animations au survol
 - Support mobile complet
 
-### ?? Dashboard Analytics
-- **4 métriques** clés en temps réel
-- **3 graphiques** Chart.js :
-  - Évolution des messages (7j)
-  - Distribution ressources par catégorie
-  - Ressources par niveau
-- Actions rapides
-
 ## Architecture
 
 ### Stack Technique
-- **Framework** : ASP.NET Core 10 MVC/Razor Pages
-- **Language** : C# 14
-- **Base de Données** : JSON File-based (extensible à SQL)
-- **Frontend** : Bootstrap 5, Chart.js
+- **Framework** : ASP.NET Core 9.0 MVC
+- **Language** : C# 13
+- **Base de Données** : SQLite (`./data/m4webapp.db`)
+- **Frontend** : Bootstrap 5, Alpine.js, Chart.js
 - **Logging** : Microsoft.Extensions.Logging
 
 ### Dossiers Principaux
 ```
 M4Webapp/
 ... Controllers/          # Logique applicative
+... Data/                 # Contexte de base de données et seeding
+... Models/               # Modèles métier
+... Repositories/        # Accès données (Messages)
+... Services/            # Logique métier (Ressources, Recherche)
 ... Views/               # Templates Razor
-... Models/              # Modèles métier
-... ViewModels/          # Modèles de vue
-... Services/            # Logique métier
-... Repositories/        # Accès données
-... Notifications/       # Email, SMS
-... Exceptions/          # Custom exceptions
-... Utilities/           # Constantes, helpers
 ... wwwroot/            # Assets (CSS, JS, images)
 ```
 
-## ?? Démarrage Rapide
+## 🛠️ Démarrage Rapide
 
 ### Prérequis
-- .NET 10 SDK
-- Visual Studio 2022 ou VS Code
+- .NET 9.0 SDK
 - Git
 
 ### Installation
 
 ```bash
-# Cloner le repository
+# 1. Cloner le repository
 git clone https://github.com/votre-compte/M4Webapp.git
 cd M4Webapp
 
-# Restaurer les packages
-dotnet restore
+# 2. Créer le dossier pour la base de données
+mkdir -p data
 
-# Compiler
-dotnet build
+# 3. Restaurer les packages
+dotnet restore M4Webapp.csproj
 
-# Exécuter
-dotnet run
+# 4. Compiler
+dotnet build M4Webapp.csproj
+
+# 5. Exécuter
+dotnet run --project M4Webapp.csproj
 ```
 
-L'application démarre sur : **https://localhost:5001**
+L'application démarre par défaut sur : **http://localhost:5000** (ou https://localhost:5001 si configuré)
 
-## Utilisation
+## 📖 Utilisation
 
 ### Pages Principales
-- **Accueil** : `https://localhost:5001/` - Hero section + aperçu
-- **Ressources** : `https://localhost:5001/Home/Resources` - Catalogue complet avec filtres
-- **Favoris** : `https://localhost:5001/Home/Favorites` - Ressources sauvegardées
-- **Contact** : `https://localhost:5001/Home/Contact` - Formulaire de contact
-- **Admin** : `https://localhost:5001/Admin` - Dashboard analytics
+- **Accueil** : `/` - Hero section + aperçu
+- **Ressources** : `/Home/Resources` - Catalogue complet avec filtres
+- **Contact** : `/Home/Contact` - Formulaire de contact
 
 ### Fonctionnalités
-1. **Rechercher** : Tapez dans la barre de recherche
-2. **Filtrer** : Utilisez les panneaux latéraux
-3. **Favoriser** : Cliquez sur ?
-4. **Basculer Thème** : Cliquez ??/??
-5. **Consulter Analytics** : Allez sur `/Admin`
+1. **Rechercher** : Tapez dans la barre de recherche sur la page Ressources.
+2. **Filtrer** : Utilisez les filtres (Catégorie, Gratuit) pour affiner les résultats.
+3. **Favoriser** : Cliquez sur l'étoile pour ajouter aux favoris (stockage local).
+4. **Basculer Thème** : Utilisez le bouton 🌙/☀️ dans la barre de navigation.
 
-##  Sécurité
-
-### Implémentée
-- ? CSRF tokens sur formulaires
-- ? Validation côté serveur
-- ? Logging de toutes les opérations
-- ? Gestion des exceptions personnalisées
-
-### À Ajouter
-- [ ] Authentification Admin (Identity)
-- [ ] Rate Limiting
-- [ ] HTTPS obligatoire en production
-- [ ] Content Security Policy (CSP)
-
-## Configuration
+## ⚙️ Configuration
 
 ### appsettings.json
+La base de données est configurée pour utiliser SQLite par défaut :
 ```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=contacts.db"
-  },
-  "Smtp": {
-    "Host": "",           // Laisser vide pour simulation
-    "Port": 25,
-    "EnableSsl": false,
-    "User": "",
-    "Pass": "",
-    "From": ""
+    "SqliteConnection": "Data Source=./data/m4webapp.db"
   }
 }
 ```
 
-### Variables d'Environnement
-```bash
-ASPNETCORE_ENVIRONMENT=Development
-ASPNETCORE_URLS=https://localhost:5001
-```
+## 🤝 Contribution
 
-## Developpement
-
-### Ajouter une Ressource
-1. Modifiez `Services/ResourceService.cs`
-2. Ajoutez une nouvelle entrée dans `GetAllResources()`
-3. Compilez et testez
-
-### Personnaliser les Couleurs
-- Modifiez `Utilities/Constants.cs` (Colors)
-- Mettez à jour les ressources correspondantes
-
-### Ajouter un Filtre
-1. Modifiez `ViewModels/ResourceFilterViewModel.cs`
-2. Mettez à jour `Services/SearchService.cs`
-3. Ajustez la vue `Views/Home/Resources.cshtml`
-
-## ?? Ressources Microsoft
-
-### Apprentissage
-- [Microsoft Learn](https://learn.microsoft.com)
-- [C# Guide](https://learn.microsoft.com/dotnet/csharp)
-- [ASP.NET Core](https://learn.microsoft.com/aspnet/core)
-- [Entity Framework Core](https://learn.microsoft.com/ef/core)
-- [Azure](https://learn.microsoft.com/azure)
-
-### Documentation
-- [Microsoft Docs](https://docs.microsoft.com)
-- [GitHub Microsoft](https://github.com/microsoft)
-
-## ?? Contribution
-
-Les contributions sont bienvenues ! Pour contribuer :
+Les contributions sont bienvenues !
 
 1. Fork le repository
 2. Créez une branche (`git checkout -b feature/AmazingFeature`)
@@ -195,32 +120,8 @@ Les contributions sont bienvenues ! Pour contribuer :
 
 Ce projet est licencié sous la [MIT License](LICENSE).
 
-##  Roadmap
-
-### v1.1 (Prochainement)
-- [ ] Authentification Admin avec Identity
-- [ ] Système de notation des ressources
-- [ ] Notifications par email
-- [ ] Export PDF des analytics
-
-### v1.2
-- [ ] API REST complète
-- [ ] Tests unitaires
-- [ ] Internationalisation (i18n)
-- [ ] Mobile App
-
-### v2.0
-- [ ] Base de données SQL complète
-- [ ] Système de certification
-- [ ] Microservices
-- [ ] Container Docker
-
 ---
 
-**Dernière mise à jour** : 2026-01-22
-**Version** : 1.0.alpha 
+**Dernière mise à jour** : 2026-04-23
+**Version** : 1.0
 **Maintenu par** : Équipe M4Webapp
-
-
-
-
